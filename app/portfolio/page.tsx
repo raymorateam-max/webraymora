@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { ServiceCard } from "@/components/ui/service-card";
 import { PortfolioFilter } from "@/components/portfolio/portfolio-filter";
 import { siteConfig } from "@/lib/config";
-import { getCaseStudies } from "@/lib/content";
+import { getCaseStudies, fallbackCaseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Portfolio — Real work, real results",
@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 };
 
 export default async function PortfolioPage() {
-  const studies = await getCaseStudies();
+  const fetched = await getCaseStudies();
+  // Shipped work is shown even before Supabase is seeded — same contract as /services.
+  const studies = fetched.length > 0 ? fetched : fallbackCaseStudies();
 
   return (
     <div className="container-px py-16 sm:py-20">

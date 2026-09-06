@@ -2,14 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/reveal";
-import { getCaseStudies, getCaseStudyBySlug } from "@/lib/content";
+import { getCaseStudies, getCaseStudyBySlug, fallbackCaseStudies } from "@/lib/content";
 import { siteConfig } from "@/lib/config";
 
 export const dynamicParams = true;
 
-/** Pre-build static paths from published slugs (needs Supabase configured). */
+/** Published row from Supabase, else our always-available shipped work. */
+async function findCaseStudy(slug: string) {
+  const fromDb = await getCaseStudyBySlug(slug);
+  if (fromDb) return fromDb;
+  return fallbackCaseStudies().find((s) => s.slug === slug) ?? null;
+}
+
+/** Pre-build static paths from published slugs (falls back to shipped work). */
 export async function generateStaticParams() {
-  const studies = await getCaseStudies();
+  const fetched = await getCaseStudies();
+  const studies = fetched.length > 0 ? fetched : fallbackCaseStudies();
   return studies.map((s) => ({ slug: s.slug }));
 }
 
@@ -19,7 +27,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const study = await getCaseStudyBySlug(slug);
+  const study = await findCaseStudy(slug);
   if (!study) return { title: "Case study not found" };
   return {
     title: study.title,
@@ -33,7 +41,7 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const study = await getCaseStudyBySlug(slug);
+  const study = await findCaseStudy(slug);
   if (!study) notFound();
 
   const nicheLabel =
