@@ -36,7 +36,7 @@ export function BookingPanel({
           submitLabel="Send details & book"
         />
         <p className="mt-6 border-t border-base-700 pt-4 text-xs text-base-400" role="note">
-          No charge to book. If you proceed, it&apos;s a 45% deposit via Payoneer; 55% on
+          No charge to book. If you proceed, it&apos;s a 45% deposit via Meezan Bank; 55% on
           delivery.
         </p>
       </section>

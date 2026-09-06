@@ -14,7 +14,7 @@ export type LeadSource = "booking" | "contact_form" | "existing_client";
  *  - presetNiche / presetTier: pre-filled from the Services -> Book flow
  *  - showScope: show the project-scope textarea (booking context)
  *  - showNiche: show the niche selector (contact context)
- *  - showDeposit: after success, surface the Payoneer deposit step (booking)
+ *  - showDeposit: after success, surface the Meezan Bank deposit step (booking)
  */
 export function LeadForm({
   source,
@@ -120,21 +120,31 @@ export function LeadForm({
               Ready to lock your slot? (45% deposit / 55% on delivery)
             </p>
             <p className="mt-1 text-sm text-base-300">
-              Pay the 45% deposit via Payoneer and we&apos;ll reserve your start date.
+              Deposit to our Meezan Bank account below, then ping us on WhatsApp to verify.
             </p>
-            {/* Payoneer receiving account — the two numbers a client pays to. */}
+            {/* Meezan Bank receiving account — the two numbers a client pays to. */}
             <div className="mt-4 space-y-2 rounded-lg border border-base-700 bg-base-900/60 p-3 text-sm">
-              <CopyRow label="Payoneer account" value={siteConfig.bank.payoneerAccount} />
-              <CopyRow label="International (IBAN)" value={siteConfig.bank.payoneerInternational} />
+              <CopyRow label="Meezan Bank account" value={siteConfig.bank.meezanAccount} />
+              <CopyRow label="Meezan Bank IBAN" value={siteConfig.bank.meezanIban} />
             </div>
-            {siteConfig.payoneerDepositLink ? (
+
+            {/* Deposit → verify flow */}
+            <ol className="mt-4 space-y-2 text-sm text-base-300">
+              <li>1. Send the 45% deposit using either reference above (a bank transfer or Meezan&apos;s app).</li>
+              <li>2. Take a screenshot of the deposit.</li>
+              <li>3. Send the screenshot on WhatsApp and tell us what you need us to start.</li>
+              <li>4. Our team verifies the money arrived.</li>
+              <li>5. Once verified, you&apos;re added to the waiting list and your slot is reserved.</li>
+            </ol>
+
+            {siteConfig.meezanDepositLink ? (
               <a
-                href={siteConfig.payoneerDepositLink}
+                href={siteConfig.meezanDepositLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary mt-4 w-full"
               >
-                Pay deposit via Payoneer
+                Send your deposit via Meezan Bank
               </a>
             ) : (
               <a
@@ -143,7 +153,7 @@ export function LeadForm({
                 rel="noopener noreferrer"
                 className="btn-primary mt-4 w-full"
               >
-                Send your deposit on WhatsApp
+                Send your deposit screenshot on WhatsApp
               </a>
             )}
           </div>

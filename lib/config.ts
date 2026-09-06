@@ -24,18 +24,23 @@ export const siteConfig = {
   phoneIntl: "+92 371 2385700",
   phoneHref: "tel:+923712385700",
 
-  // Payoneer receiving account — the two numbers a client needs to pay.
-  // bankNum: 15-digit receiving account · international: IBAN-style ref.
+  // Meezan Bank receiving account — the two numbers a client needs to pay.
+  // meezanAccount: 15-digit account number · meezanIban: IBAN.
   bank: {
-    payoneerAccount: "99130115860334",
-    payoneerInternational: "PK66MEZN0099130115860334",
+    meezanAccount: "99130115860334",
+    meezanIban: "PK66MEZN0099130115860334",
   },
 
   // Booking calendar (Cal.com embed URL) — empty = shows "not configured" state
   calcomUrl: process.env.NEXT_PUBLIC_CALCOM_URL ?? "",
 
-  // Payoneer Request-a-Payment deposit link (45% deposit / 55% on delivery)
-  payoneerDepositLink: process.env.NEXT_PUBLIC_PAYONEER_DEPOSIT_LINK ?? "",
+  // Meezan Bank deposit link (45% deposit / 55% on delivery).
+  // Reads the new NEXT_PUBLIC_MEEZAN_DEPOSIT_LINK; falls back to the old
+  // Payoneer var so any value already set on Vercel keeps working.
+  meezanDepositLink:
+    process.env.NEXT_PUBLIC_MEEZAN_DEPOSIT_LINK ??
+    process.env.NEXT_PUBLIC_PAYONEER_DEPOSIT_LINK ??
+    "",
 
   // Analytics (Plausible or Umami)
   analyticsDomain: process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN ?? "",
