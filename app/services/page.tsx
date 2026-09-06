@@ -21,8 +21,84 @@ export const metadata: Metadata = {
  * Polished pre-seed packages shown whenever Supabase isn't configured or a
  * niche has no rows yet. Same shape as a `packages` row so PackageCard and the
  * /book tier prefill just work — holds this page together without live data.
+ *
+ * The web niche carries three fixed-price project-type packages (tier is the
+ * URL slug used by /book?tier=...). Other niches keep the generic tiers below.
  */
+const WEB_PACKAGES = [
+  {
+    tier: "brochure",
+    name: "Basic Brochure Site",
+    price_min: 85000,
+    price_max: 140000,
+    price_usd_min: 300,
+    price_usd_max: 500,
+    timeline: "3–5 days",
+    stack: "Next.js / Tailwind CSS + Vercel (free tier)",
+    features: ["1–3 pages", "Responsive UI", "Contact form", "Basic SEO"],
+    popular: false,
+    sort: 1,
+  },
+  {
+    tier: "cms",
+    name: "CMS-Driven Business Site",
+    price_min: 140000,
+    price_max: 220000,
+    price_usd_min: 500,
+    price_usd_max: 800,
+    timeline: "1–2 weeks",
+    stack: "Next.js + free headless CMS (Sanity / TinaCMS)",
+    features: ["Dynamic blog/portfolio", "Admin panel for client updates"],
+    popular: true,
+    sort: 2,
+  },
+  {
+    tier: "ecommerce",
+    name: "E-Commerce Store",
+    price_min: 220000,
+    price_max: 277300,
+    price_usd_min: 800,
+    price_usd_max: 1000,
+    timeline: "2–3 weeks",
+    stack: "Next.js + Stripe Checkout / Payhip API",
+    features: ["Simple product catalog", "Stripe checkout", "Order email alerts"],
+    popular: false,
+    sort: 3,
+  },
+] satisfies {
+  tier: PackageRow["tier"];
+  name: string;
+  price_min: number;
+  price_max: number;
+  price_usd_min: number;
+  price_usd_max: number;
+  timeline: string;
+  stack: string;
+  features: string[];
+  popular: boolean;
+  sort: number;
+}[];
+
 function fallbackPackages(niche: string): PackageRow[] {
+  if (niche === "web") {
+    return WEB_PACKAGES.map((p) => ({
+      id: `${niche}-${p.tier}`,
+      niche,
+      tier: p.tier,
+      name: p.name,
+      price_min: p.price_min,
+      price_max: p.price_max,
+      price_usd_min: p.price_usd_min,
+      price_usd_max: p.price_usd_max,
+      features: p.features,
+      timeline: p.timeline,
+      stack: p.stack,
+      popular: p.popular,
+      sort: p.sort,
+      created_at: "",
+    }));
+  }
+
   const tiers: {
     tier: PackageRow["tier"];
     name: string;
@@ -77,7 +153,11 @@ function fallbackPackages(niche: string): PackageRow[] {
     name: t.name,
     price_min: null,
     price_max: null,
+    price_usd_min: null,
+    price_usd_max: null,
     features: t.features,
+    timeline: null,
+    stack: null,
     popular: t.popular,
     sort: t.sort,
     created_at: "",

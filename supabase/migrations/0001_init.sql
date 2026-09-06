@@ -21,11 +21,15 @@ create table public.site_content (
 create table public.packages (
   id uuid primary key default gen_random_uuid(),
   niche text not null,                      -- web | design | video | copy
-  tier text not null check (tier in ('Starter', 'Standard', 'Premium')),
+  tier text not null check (tier in ('Starter', 'Standard', 'Premium', 'brochure', 'cms', 'ecommerce')),
   name text not null,
   price_min numeric,
   price_max numeric,
+  price_usd_min numeric,                    -- USD equivalent for display
+  price_usd_max numeric,
   features jsonb,                           -- array of feature strings
+  timeline text,                            -- e.g. '3-5 days'
+  stack text,                               -- e.g. 'Next.js / Tailwind CSS + Vercel (free tier)'
   popular boolean not null default false,
   sort int not null default 0,
   created_at timestamptz not null default now()
@@ -116,19 +120,19 @@ insert into public.site_content (key, title, body, extra) values
   ('services_intro', 'Services & Pricing', 'Fixed scope, transparent pricing, and a 45% deposit to lock your slot. Every project follows the same proven process.', null),
   ('about_story', 'Why Raymora exists', 'A multi-niche agency built on one idea: clients should get a real process, not a handshake deal. We started solo, grew a pipeline, and now run a studio across four crafts.', '{"team": [{"name": "Founder", "role": "Founder & Lead", "blurb": "Content-slot: add team profiles here as the agency scales."}]}');
 
-insert into public.packages (niche, tier, name, price_min, price_max, features, popular, sort) values
-  ('web', 'Starter', 'Landing Page', 500, 900, '["Single landing page", "Mobile-first responsive", "2 revision rounds", "Basic SEO"]', false, 1),
-  ('web', 'Standard', 'Marketing Site', 1200, 2400, '["Up to 5 pages", "CMS-ready", "3 revision rounds", "Analytics + SEO"]', true, 2),
-  ('web', 'Premium', 'Web App', 3000, 8000, '["Custom web application", "Database + auth", "4 revision rounds", "Post-launch support"]', false, 3),
-  ('design', 'Starter', 'Brand Kit', 400, 800, '["Logo + color palette", "Typography system", "2 revision rounds"]', false, 1),
-  ('design', 'Standard', 'Social Media Kit', 600, 1200, '["12 post templates", "Story + reel covers", "3 revision rounds"]', true, 2),
-  ('design', 'Premium', 'Full Identity', 1200, 3000, '["Complete brand identity", "Brand guidelines doc", "4 revision rounds"]', false, 3),
-  ('video', 'Starter', 'Short-Form Edit', 150, 400, '["1 short-form edit (reels/Shorts)", "Captions + music", "2 revision rounds"]', false, 1),
-  ('video', 'Standard', 'Content Pack', 500, 1200, '["5 short-form edits / month", "Platform-optimized", "3 revision rounds"]', true, 2),
-  ('video', 'Premium', 'Long-Form Edit', 800, 2000, '["Full-length video edit", "Color grading + sound", "3 revision rounds"]', false, 3),
-  ('copy', 'Starter', 'Sales Page Copy', 400, 900, '["Full sales page copy", "2 revision rounds", "Conversion-focused"]', false, 1),
-  ('copy', 'Standard', 'Launch Sequence', 800, 1800, '["5-email launch sequence", "Subject line testing", "3 revision rounds"]', true, 2),
-  ('copy', 'Premium', 'Content Engine', 1500, 4000, '["Monthly content calendar", "10 pieces / month", "Voice + positioning"]', false, 3);
+insert into public.packages (niche, tier, name, price_min, price_max, price_usd_min, price_usd_max, features, timeline, stack, popular, sort) values
+  ('web', 'brochure', 'Basic Brochure Site', 85000, 140000, 300, 500, '["1–3 pages", "Responsive UI", "Contact form", "Basic SEO"]', '3–5 days', 'Next.js / Tailwind CSS + Vercel (free tier)', false, 1),
+  ('web', 'cms', 'CMS-Driven Business Site', 140000, 220000, 500, 800, '["Dynamic blog/portfolio", "Admin panel for client updates"]', '1–2 weeks', 'Next.js + free headless CMS (Sanity / TinaCMS)', true, 2),
+  ('web', 'ecommerce', 'E-Commerce Store', 220000, 277300, 800, 1000, '["Simple product catalog", "Stripe checkout", "Order email alerts"]', '2–3 weeks', 'Next.js + Stripe Checkout / Payhip API', false, 3),
+  ('design', 'Starter', 'Brand Kit', null, null, null, null, '["Logo + color palette", "Typography system", "2 revision rounds"]', null, null, false, 1),
+  ('design', 'Standard', 'Social Media Kit', null, null, null, null, '["12 post templates", "Story + reel covers", "3 revision rounds"]', null, null, true, 2),
+  ('design', 'Premium', 'Full Identity', null, null, null, null, '["Complete brand identity", "Brand guidelines doc", "4 revision rounds"]', null, null, false, 3),
+  ('video', 'Starter', 'Short-Form Edit', null, null, null, null, '["1 short-form edit (reels/Shorts)", "Captions + music", "2 revision rounds"]', null, null, false, 1),
+  ('video', 'Standard', 'Content Pack', null, null, null, null, '["5 short-form edits / month", "Platform-optimized", "3 revision rounds"]', null, null, true, 2),
+  ('video', 'Premium', 'Long-Form Edit', null, null, null, null, '["Full-length video edit", "Color grading + sound", "3 revision rounds"]', null, null, false, 3),
+  ('copy', 'Starter', 'Sales Page Copy', null, null, null, null, '["Full sales page copy", "2 revision rounds", "Conversion-focused"]', null, null, false, 1),
+  ('copy', 'Standard', 'Launch Sequence', null, null, null, null, '["5-email launch sequence", "Subject line testing", "3 revision rounds"]', null, null, true, 2),
+  ('copy', 'Premium', 'Content Engine', null, null, null, null, '["Monthly content calendar", "10 pieces / month", "Voice + positioning"]', null, null, false, 3);
 
 insert into public.case_studies (niche, title, slug, summary, problem, solution, result, preview_url, published, sort) values
   ('web', 'Fintech landing page', 'fintech-landing', 'A landing page that turned cold traffic into booked demos.', 'The client had great product, but their site read like a spec sheet and converted poorly.', 'We rebuilt the narrative around the customer problem, cut the copy by half, and shipped a fast landing page with a single CTA.', 'Demo bookings up 3x in 6 weeks.', null, true, 1),
