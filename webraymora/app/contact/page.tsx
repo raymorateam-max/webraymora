@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Reach Raymora — start a new project, get support as an existing client, or ask a general question. Email, WhatsApp, Discord, or a free discovery call.",
+    "Reach Raymora — start a new project, get support as an existing client, or ask a general question. Email, WhatsApp, or a free discovery call.",
 };
 
 const MAIL_ICON = (
@@ -65,7 +65,7 @@ const PHONE_ICON = (
 
 export default function ContactPage() {
   return (
-    <div className="container-px py-16 sm:py-20">
+    <div className="container-px page-enter py-16 sm:py-20">
       <SectionHeading
         eyebrow="Contact"
         title="Talk to us"
@@ -107,15 +107,6 @@ export default function ContactPage() {
                 aria-label="Message us on WhatsApp about a new project"
               >
                 WhatsApp
-              </Link>
-              <Link
-                href={siteConfig.discord}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                aria-label="Message us on Discord about a new project"
-              >
-                Discord
               </Link>
             </div>
           </div>

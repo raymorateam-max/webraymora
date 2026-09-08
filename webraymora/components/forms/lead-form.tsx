@@ -66,7 +66,6 @@ export function LeadForm({
           name: data.get("name"),
           email: isExisting ? "" : data.get("email"),
           whatsapp: data.get("whatsapp") || "",
-          discord: data.get("discord") || "",
           niche: data.get("niche") || presetNiche || "",
           tier: data.get("tier") || presetTier || "",
           scope: data.get("scope") || "",
@@ -200,9 +199,6 @@ export function LeadForm({
         )}
         <Field label="WhatsApp (optional)">
           <input name="whatsapp" autoComplete="tel" placeholder="+1 555 000 0000" className="input" />
-        </Field>
-        <Field label="Discord (optional)">
-          <input name="discord" placeholder="username" className="input" />
         </Field>
       </div>
 

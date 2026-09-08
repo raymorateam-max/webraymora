@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { ServiceCard } from "@/components/ui/service-card";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { FloatingOrbs } from "@/components/ui/floating-orbs";
 import { PortfolioFilter } from "@/components/portfolio/portfolio-filter";
 import { siteConfig } from "@/lib/config";
 import { getCaseStudies, fallbackCaseStudies } from "@/lib/content";
@@ -20,7 +22,8 @@ export default async function PortfolioPage() {
   const studies = fetched.length > 0 ? fetched : fallbackCaseStudies();
 
   return (
-    <div className="container-px py-16 sm:py-20">
+    <div className="container-px page-enter relative py-16 sm:py-20">
+      <FloatingOrbs count={2} />
       <SectionHeading
         eyebrow="Our work"
         title="Portfolio"
@@ -63,12 +66,14 @@ export default async function PortfolioPage() {
               you real samples before you commit.
             </p>
           </div>
-          <Link
-            href="/book"
-            className="btn-primary inline-flex shrink-0 items-center justify-center gap-2"
-          >
-            Book a call
-          </Link>
+          <MagneticButton>
+            <Link
+              href="/book"
+              className="btn-primary inline-flex shrink-0 items-center justify-center gap-2"
+            >
+              Book a call
+            </Link>
+          </MagneticButton>
         </Reveal>
       </section>
     </div>

@@ -43,11 +43,6 @@ export function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="hover:text-base-100">
-                  Discord
-                </a>
-              </li>
-              <li>
                 <a href={`mailto:${siteConfig.email}`} className="hover:text-base-100">
                   {siteConfig.email}
                 </a>

@@ -6,6 +6,12 @@ import { CaseStudyCard } from "@/components/ui/case-study-card";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { ServiceCard } from "@/components/ui/service-card";
 import { Reveal } from "@/components/ui/reveal";
+import { TextReveal } from "@/components/ui/text-reveal";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { FloatingOrbs } from "@/components/ui/floating-orbs";
+import { CountUp } from "@/components/ui/count-up";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { ParallaxSection } from "@/components/ui/parallax-section";
 import { siteConfig } from "@/lib/config";
 import {
   getCaseStudies,
@@ -29,33 +35,13 @@ const trustFacts = [
   "Fast turnaround",
 ];
 
-/* Fallback testimonials (deprecated). We no longer show anonymous quotes —
-   the section only renders once real testimonials exist (see #4). */
-function getFallbackReviews() {
-  return [
-    {
-      id: "f1",
-      quote:
-        "Fixed price quoted up front, nothing moved. The discovery call actually changed what we built — for the better.",
-      name: "Verified client",
-      role: "Web build",
-    },
-    {
-      id: "f2",
-      quote:
-        "A real process from scope to delivery. I always knew what stage my project was at and what came next.",
-      name: "Verified client",
-      role: "Brand & launch",
-    },
-    {
-      id: "f3",
-      quote:
-        "The process was the product. Fixed scope, fixed price, and a delivery that showed up exactly when it was promised.",
-      name: "Verified client",
-      role: "Design & marketing",
-    },
-  ];
-}
+/* Stats for the animated counter section */
+const stats = [
+  { value: 5, suffix: "+", label: "Projects shipped" },
+  { value: 100, suffix: "%", label: "On-time delivery" },
+  { value: 5, suffix: "-star", label: "Client experience" },
+  { value: 3, suffix: "–5", label: "Day avg. turnaround", prefix: "" },
+];
 
 const QUOTE_ICON = (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -87,12 +73,17 @@ export default async function Home() {
   const heroTail = heroParts.slice(1).join(". ");
 
   return (
-    <div>
+    <div className="page-enter">
+      <ScrollProgress />
+
       {/* ---------------- HERO ---------------- */}
       <section
         aria-label="Intro"
         className="relative overflow-hidden border-b border-base-800 bg-base-950"
       >
+        {/* Floating background orbs for depth */}
+        <FloatingOrbs count={3} />
+
         {/* Subtle radial accent glow behind the copy (lights gently). */}
         <div
           aria-hidden="true"
@@ -129,12 +120,16 @@ export default async function Home() {
               className="hero-anim mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
               style={{ animationDelay: "420ms" }}
             >
-              <Link href="/book" className="btn-primary">
-                Book a Call
-              </Link>
-              <Link href="/portfolio" className="btn-secondary">
-                See Our Work
-              </Link>
+              <MagneticButton>
+                <Link href="/book" className="btn-primary">
+                  Book a Call
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link href="/portfolio" className="btn-secondary">
+                  See Our Work
+                </Link>
+              </MagneticButton>
             </div>
           </div>
         </div>
@@ -145,7 +140,7 @@ export default async function Home() {
         aria-label="What working with us is like"
         className="border-b border-base-800 bg-base-900"
       >
-        <Reveal dir="none" className="container-px flex flex-wrap items-center gap-3 py-6">
+        <Reveal dir="none" className="container-px flex flex-wrap items-center gap-3 py-6 stagger-parent">
           {trustFacts.map((fact) => (
             <span key={fact} className="chip text-base-300">
               {fact}
@@ -154,17 +149,36 @@ export default async function Home() {
         </Reveal>
       </section>
 
+      {/* ---------------- STATS ---------------- */}
+      <section aria-label="Stats" className="border-b border-base-800 bg-base-950">
+        <div className="container-px grid grid-cols-2 gap-6 py-12 sm:grid-cols-4">
+          {stats.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 100} dir="up" className="text-center">
+              <div className="text-3xl font-extrabold text-base-100 sm:text-4xl">
+                <CountUp target={stat.value} suffix={stat.suffix} prefix={stat.prefix} duration={1800 + i * 200} />
+              </div>
+              <p className="mt-2 text-sm text-base-400">{stat.label}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ---------------- SERVICES ---------------- */}
       <section aria-label="Services" className="container-px py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="What we do"
-          title="Web development now — more crafts soon"
-          subtitle={fallbackCopy.servicesIntro}
+        <TextReveal
+          text="Web development now — more crafts soon"
+          as="h2"
+          className="text-3xl font-bold tracking-tight text-base-100 sm:text-4xl"
         />
+        <Reveal delay={200} dir="none">
+          <p className="mt-4 max-w-xl text-base-400">{fallbackCopy.servicesIntro}</p>
+        </Reveal>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {siteConfig.niches.map((n, i) => (
             <Reveal key={n.slug} delay={i * 70} className="h-full">
-              <ServiceCard niche={n} />
+              <div className="card-tilt h-full">
+                <ServiceCard niche={n} />
+              </div>
             </Reveal>
           ))}
         </div>
@@ -177,19 +191,27 @@ export default async function Home() {
       >
         <div className="container-px">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading eyebrow="Recent work" title="Proof, not promises" />
-            <Link
-              href="/portfolio"
-              className="btn-secondary shrink-0"
-              aria-label="View all work in the portfolio"
-            >
-              View all work
-            </Link>
+            <TextReveal
+              text="Proof, not promises"
+              as="h2"
+              className="text-3xl font-bold tracking-tight text-base-100 sm:text-4xl"
+            />
+            <Reveal delay={300} dir="none">
+              <Link
+                href="/portfolio"
+                className="btn-secondary shrink-0"
+                aria-label="View all work in the portfolio"
+              >
+                View all work
+              </Link>
+            </Reveal>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {work.slice(0, 6).map((item, i) => (
               <Reveal key={item.id} delay={i * 70} className="h-full">
-                <CaseStudyCard item={item} />
+                <div className="card-tilt h-full">
+                  <CaseStudyCard item={item} />
+                </div>
               </Reveal>
             ))}
           </div>
@@ -198,11 +220,16 @@ export default async function Home() {
 
       {/* ---------------- PROCESS ---------------- */}
       <section aria-label="How we work" className="container-px py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="How it works"
-          title="Five stages, every project"
-          subtitle="You always know what's happening and what comes next — from discovery to delivery."
+        <TextReveal
+          text="Five stages, every project"
+          as="h2"
+          className="text-3xl font-bold tracking-tight text-base-100 sm:text-4xl"
         />
+        <Reveal delay={200} dir="none">
+          <p className="mt-4 max-w-xl text-base-400">
+            You always know what&apos;s happening and what comes next — from discovery to delivery.
+          </p>
+        </Reveal>
         <ol className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
           {siteConfig.processStages.map((stage, i) => (
             <Reveal as="li" key={stage.title} delay={i * 90} className="relative">
@@ -214,7 +241,7 @@ export default async function Home() {
                 />
               )}
               <div className="flex items-start gap-4 lg:flex-col lg:gap-0">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent-soft bg-base-800 text-accent-strong">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent-soft bg-base-800 text-accent-strong gradient-border">
                   <span className="font-bold" aria-hidden="true">
                     {i + 1}
                   </span>
@@ -239,11 +266,17 @@ export default async function Home() {
           className="border-t border-base-800 bg-base-900 py-16 sm:py-20"
         >
           <div className="container-px">
-            <SectionHeading eyebrow="Social proof" title="What clients say" />
+            <TextReveal
+              text="What clients say"
+              as="h2"
+              className="text-3xl font-bold tracking-tight text-base-100 sm:text-4xl"
+            />
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((item, i) => (
                 <Reveal key={item.id} delay={i * 70} className="h-full">
-                  <TestimonialCard item={item} />
+                  <div className="card-tilt h-full">
+                    <TestimonialCard item={item} />
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -261,18 +294,22 @@ export default async function Home() {
             Tell us what you&apos;re building. We&apos;ll scope it together, give you a clear price, and walk you through every stage — no surprises.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link href="/book" className="btn-primary">
-              Book a free discovery call
-            </Link>
-            <Link
-              href={siteConfig.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-              aria-label="Chat with us on WhatsApp"
-            >
-              Chat on WhatsApp
-            </Link>
+            <MagneticButton>
+              <Link href="/book" className="btn-primary">
+                Book a free discovery call
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link
+                href={siteConfig.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                aria-label="Chat with us on WhatsApp"
+              >
+                Chat on WhatsApp
+              </Link>
+            </MagneticButton>
           </div>
         </Reveal>
       </section>

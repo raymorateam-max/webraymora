@@ -5,6 +5,9 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { NicheIcon } from "@/components/ui/niche-icon";
 import { PackageCard } from "@/components/ui/package-card";
 import { Reveal } from "@/components/ui/reveal";
+import { TextReveal } from "@/components/ui/text-reveal";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { FloatingOrbs } from "@/components/ui/floating-orbs";
 import { siteConfig } from "@/lib/config";
 import { getPackages, fallbackCopy } from "@/lib/content";
 import type { Database } from "@/types/database";
@@ -172,7 +175,9 @@ export default async function ServicesPage() {
   const packageLists = await Promise.all(siteConfig.niches.map((n) => getPackages(n.slug)));
 
   return (
-    <div className="container-px py-16 sm:py-20">
+    <div className="container-px page-enter relative py-16 sm:py-20">
+      <FloatingOrbs count={2} />
+
       <SectionHeading
         eyebrow="Services & pricing"
         title="Fixed scope, transparent pricing"
@@ -180,9 +185,11 @@ export default async function ServicesPage() {
       />
 
       {/* Payment note — chip-style, shown once near the top */}
-      <p className="chip mt-8 w-fit text-sm" role="note">
-        {PAYMENT_NOTE}
-      </p>
+      <Reveal dir="none" delay={200}>
+        <p className="chip mt-8 w-fit text-sm" role="note">
+          {PAYMENT_NOTE}
+        </p>
+      </Reveal>
 
       {/* One section per niche; each id is the niche slug so /services#<slug> anchors work */}
       {siteConfig.niches.map((niche, i) => {
@@ -212,7 +219,9 @@ export default async function ServicesPage() {
               <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {pkgList.map((pkg, j) => (
                   <Reveal key={pkg.id} delay={j * 80} className="h-full">
-                    <PackageCard pkg={pkg} />
+                    <div className="card-tilt h-full">
+                      <PackageCard pkg={pkg} />
+                    </div>
                   </Reveal>
                 ))}
               </div>
@@ -245,9 +254,11 @@ export default async function ServicesPage() {
               Book a free discovery call and we&apos;ll scope it together.
             </p>
           </div>
-          <Link href="/book" className="btn-primary inline-flex shrink-0 items-center justify-center gap-2">
-            Book a discovery call
-          </Link>
+          <MagneticButton>
+            <Link href="/book" className="btn-primary inline-flex shrink-0 items-center justify-center gap-2">
+              Book a discovery call
+            </Link>
+          </MagneticButton>
         </Reveal>
       </section>
     </div>

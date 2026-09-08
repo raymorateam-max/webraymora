@@ -31,7 +31,7 @@ export default async function BookPage({
     .join(" ");
 
   return (
-    <div>
+    <div className="page-enter">
       <section className="container-px py-16 sm:py-20">
         <SectionHeading
           eyebrow="Book a call"
@@ -100,15 +100,6 @@ export default async function BookPage({
                   aria-label="Message us on WhatsApp"
                 >
                   WhatsApp
-                </Link>
-                <Link
-                  href={siteConfig.discord}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  aria-label="Message us on Discord"
-                >
-                  Discord
                 </Link>
               </div>
             </section>

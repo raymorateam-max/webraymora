@@ -14,10 +14,7 @@ export const siteConfig = {
     "Raymora builds fast, high-converting websites — fixed price, real process, no handshake deals. Graphic design, video editing, and copywriting launch soon.",
 
   // Contact links (content-slots — fill with the real values).
-  // `discord` is empty until a real invite exists, so the link is hidden
-  // rather than pointing at a placeholder.
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_LINK ?? "https://wa.me/923712385700",
-  discord: process.env.NEXT_PUBLIC_DISCORD_LINK ?? "",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "raymora.team@gmail.com",
   existingClientEmail: process.env.NEXT_PUBLIC_EXISTING_CLIENT_EMAIL ?? "raymora.team@gmail.com",
 

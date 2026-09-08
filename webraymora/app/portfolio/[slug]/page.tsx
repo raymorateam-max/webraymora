@@ -49,7 +49,7 @@ export default async function CaseStudyPage({
   const images = Array.isArray(study.image_urls) ? (study.image_urls as string[]) : [];
 
   return (
-    <div>
+    <div className="page-enter">
       <section className="container-px py-16 sm:py-20">
         <Link href="/portfolio" className="text-sm text-base-400 hover:text-base-100">
           ← All work

@@ -3,6 +3,9 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { ServiceCard } from "@/components/ui/service-card";
+import { TextReveal } from "@/components/ui/text-reveal";
+import { FloatingOrbs } from "@/components/ui/floating-orbs";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 import { siteConfig } from "@/lib/config";
 import { getSiteContent, fallbackCopy } from "@/lib/content";
 
@@ -25,8 +28,9 @@ export default async function AboutPage() {
   const members = (story?.extra?.team as TeamMember[] | undefined) ?? [];
 
   return (
-    <div>
-      <section className="container-px py-16 sm:py-20">
+    <div className="page-enter">
+      <section className="container-px relative py-16 sm:py-20">
+        <FloatingOrbs count={2} />
         <SectionHeading
           eyebrow="About us"
           title="One agency, one proven process"
@@ -123,9 +127,11 @@ export default async function AboutPage() {
               A free discovery call is the fastest way to see if we're a fit.
             </p>
           </div>
-          <Link href="/book" className="btn-primary shrink-0">
-            Book a call
-          </Link>
+          <MagneticButton>
+            <Link href="/book" className="btn-primary shrink-0">
+              Book a call
+            </Link>
+          </MagneticButton>
         </Reveal>
       </section>
     </div>

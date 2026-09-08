@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Analytics } from "@/components/providers/analytics";
 import { LiveChat } from "@/components/providers/live-chat";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { siteConfig } from "@/lib/config";
 
 const geistSans = Geist({
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-base-950 text-base-100">
+        <ScrollProgress />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
