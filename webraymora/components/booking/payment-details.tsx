@@ -4,7 +4,7 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/config";
 
 /**
- * Payoneer payment details card. Shown on the booking flow so a client has
+ * Meezan Bank payment details card. Shown on the booking flow so a client has
  * the exact numbers to pay the 45% deposit / 55% balance — with copy buttons.
  */
 export function PaymentDetails() {
@@ -16,15 +16,14 @@ export function PaymentDetails() {
       <div>
         <h2 className="text-xl font-bold tracking-tight text-base-100">How to pay</h2>
         <p className="mt-1 text-sm text-base-400">
-          Deposit locks your start date; balance is due on delivery. Pay by Payoneer using
-          either reference below.
+          Deposit locks your start date; balance is due on delivery. Pay into our Meezan Bank
+          account using either reference below.
         </p>
       </div>
 
       <div className="space-y-2 rounded-xl border border-base-700 bg-base-900/60 p-4 text-sm">
-        <Row label="Payoneer account" value={siteConfig.bank.payoneerAccount} />
-        <Row label="International (IBAN)" value={siteConfig.bank.payoneerInternational} />
-        <Row label="Holder name" value={siteConfig.name} />
+        <Row label="Meezan Bank account" value={siteConfig.bank.meezanAccount} />
+        <Row label="Meezan Bank IBAN" value={siteConfig.bank.meezanIban} />
       </div>
 
       <p className="text-xs text-base-400">

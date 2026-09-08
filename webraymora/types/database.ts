@@ -43,11 +43,21 @@ export interface Database {
         Row: {
           id: string;
           niche: string;
-          tier: "Starter" | "Standard" | "Premium";
+          tier:
+            | "Starter"
+            | "Standard"
+            | "Premium"
+            | "brochure"
+            | "cms"
+            | "ecommerce";
           name: string;
           price_min: number | null;
           price_max: number | null;
+          price_usd_min: number | null;
+          price_usd_max: number | null;
           features: Json | null;
+          timeline: string | null;
+          stack: string | null;
           popular: boolean;
           sort: number;
           created_at: string;
@@ -55,11 +65,21 @@ export interface Database {
         Insert: {
           id?: string;
           niche: string;
-          tier: "Starter" | "Standard" | "Premium";
+          tier:
+            | "Starter"
+            | "Standard"
+            | "Premium"
+            | "brochure"
+            | "cms"
+            | "ecommerce";
           name: string;
           price_min?: number | null;
           price_max?: number | null;
+          price_usd_min?: number | null;
+          price_usd_max?: number | null;
           features?: Json | null;
+          timeline?: string | null;
+          stack?: string | null;
           popular?: boolean;
           sort?: number;
           created_at?: string;
@@ -67,11 +87,21 @@ export interface Database {
         Update: {
           id?: string;
           niche?: string;
-          tier?: "Starter" | "Standard" | "Premium";
+          tier?:
+            | "Starter"
+            | "Standard"
+            | "Premium"
+            | "brochure"
+            | "cms"
+            | "ecommerce";
           name?: string;
           price_min?: number | null;
           price_max?: number | null;
+          price_usd_min?: number | null;
+          price_usd_max?: number | null;
           features?: Json | null;
+          timeline?: string | null;
+          stack?: string | null;
           popular?: boolean;
           sort?: number;
           created_at?: string;
