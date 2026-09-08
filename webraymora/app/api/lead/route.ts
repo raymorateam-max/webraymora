@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { createAdminClient, isSupabaseConfigured } from "@/lib/supabase";
 
 /**
@@ -16,9 +17,10 @@ import { createAdminClient, isSupabaseConfigured } from "@/lib/supabase";
  *      Sheets tracker with the same columns (Client/Stage/Niche/Scope/
  *      Deposit Paid/Final Paid/Preview URL).
  *   3. Record a `lead_events` row for the intake.
- *   4. Email a notification to the agency inbox (Resend REST API — no
- *      SDK, no MCP, no plugin). Recipient = LEAD_NOTIFY_EMAIL or the
- *      site contact email; set LEAD_NOTIFY_EMAIL to your Gmail address.
+ *   4. Email a notification to the agency inbox (Gmail SMTP via
+ *      nodemailer — no third-party service, no domain verification).
+ *      Recipient = LEAD_NOTIFY_EMAIL, falling back to GMAIL_USER or the
+ *      site contact email. Set GMAIL_USER + GMAIL_APP_PASSWORD.
  *
  * Steps 2-4 are best-effort: if any of them fails, the lead is still
  * saved and the response still succeeds — an integration hiccup never
@@ -113,13 +115,18 @@ export async function POST(request: Request) {
   }
 
   // ---- 3. Email the notification to the agency inbox (best-effort) ----
-  // Plain REST call to Resend's API — no SDK, no MCP, no plugin. If the key
-  // isn't set, this step is skipped entirely and the lead is still saved.
-  const resendApiKey = process.env.RESEND_API_KEY;
+  // Sends through Gmail's SMTP server (smtp.gmail.com) using an App Password
+  // — no third-party email service, no domain verification. If the env isn't
+  // set, this step is skipped entirely and the lead is still saved.
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
   const notifyEmail =
-    process.env.LEAD_NOTIFY_EMAIL ?? process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "";
+    process.env.LEAD_NOTIFY_EMAIL ??
+    gmailUser ??
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ??
+    "";
   let emailSent = false;
-  if (resendApiKey && notifyEmail) {
+  if (gmailUser && gmailAppPassword && notifyEmail) {
     try {
       const slot = str(payload.slot);
       const niche = str(payload.niche);
@@ -154,28 +161,26 @@ export async function POST(request: Request) {
         "</table>",
       ].join("");
 
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "Raymora Leads <onboarding@resend.dev>",
-          to: [notifyEmail],
-          reply_to: email || undefined,
-          subject: leadLine,
-          text,
-          html,
-        }),
-        signal: AbortSignal.timeout(10000),
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // SSL
+        auth: { user: gmailUser, pass: gmailAppPassword },
+        connectionTimeout: 10000,
+        socketTimeout: 10000,
       });
-      emailSent = res.ok;
-      if (!res.ok) {
-        console.error("[api/lead] Resend non-2xx:", res.status, await res.text().catch(() => ""));
-      }
+
+      await transporter.sendMail({
+        from: `"Raymora" <${gmailUser}>`,
+        to: notifyEmail,
+        replyTo: email || undefined,
+        subject: leadLine,
+        text,
+        html,
+      });
+      emailSent = true;
     } catch (err) {
-      console.error("[api/lead] Email notification failed (lead still saved):", err);
+      console.error("[api/lead] Gmail email send failed (lead still saved):", err);
     }
   }
 

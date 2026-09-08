@@ -8,14 +8,16 @@
 
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? "Raymora",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://webraymora.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://webraymora.vercel.app",
   tagline: "Web development — designed, built, and shipped in one place.",
   description:
     "Raymora builds fast, high-converting websites — fixed price, real process, no handshake deals. Graphic design, video editing, and copywriting launch soon.",
 
-  // Contact links (content-slots — fill with the real values)
+  // Contact links (content-slots — fill with the real values).
+  // `discord` is empty until a real invite exists, so the link is hidden
+  // rather than pointing at a placeholder.
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_LINK ?? "https://wa.me/923712385700",
-  discord: process.env.NEXT_PUBLIC_DISCORD_LINK ?? "https://discord.gg/placeholder",
+  discord: process.env.NEXT_PUBLIC_DISCORD_LINK ?? "",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "raymora.team@gmail.com",
   existingClientEmail: process.env.NEXT_PUBLIC_EXISTING_CLIENT_EMAIL ?? "raymora.team@gmail.com",
 
@@ -24,18 +26,23 @@ export const siteConfig = {
   phoneIntl: "+92 371 2385700",
   phoneHref: "tel:+923712385700",
 
-  // Payoneer receiving account — the two numbers a client needs to pay.
-  // bankNum: 15-digit receiving account · international: IBAN-style ref.
+  // Meezan Bank receiving account — the two numbers a client needs to pay.
+  // meezanAccount: 15-digit account number · meezanIban: IBAN.
   bank: {
-    payoneerAccount: "99130115860334",
-    payoneerInternational: "PK66MEZN0099130115860334",
+    meezanAccount: "99130115860334",
+    meezanIban: "PK66MEZN0099130115860334",
   },
 
   // Booking calendar (Cal.com embed URL) — empty = shows "not configured" state
   calcomUrl: process.env.NEXT_PUBLIC_CALCOM_URL ?? "",
 
-  // Payoneer Request-a-Payment deposit link (45% deposit / 55% on delivery)
-  payoneerDepositLink: process.env.NEXT_PUBLIC_PAYONEER_DEPOSIT_LINK ?? "",
+  // Meezan Bank deposit link (45% deposit / 55% on delivery).
+  // Reads the new NEXT_PUBLIC_MEEZAN_DEPOSIT_LINK; falls back to the old
+  // Payoneer var so any value already set on Vercel keeps working.
+  meezanDepositLink:
+    process.env.NEXT_PUBLIC_MEEZAN_DEPOSIT_LINK ??
+    process.env.NEXT_PUBLIC_PAYONEER_DEPOSIT_LINK ??
+    "",
 
   // Analytics (Plausible or Umami)
   analyticsDomain: process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN ?? "",

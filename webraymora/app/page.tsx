@@ -7,7 +7,13 @@ import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { ServiceCard } from "@/components/ui/service-card";
 import { Reveal } from "@/components/ui/reveal";
 import { siteConfig } from "@/lib/config";
-import { getCaseStudies, getTestimonials, getSiteContent, fallbackCopy } from "@/lib/content";
+import {
+  getCaseStudies,
+  getTestimonials,
+  getSiteContent,
+  fallbackCopy,
+  fallbackCaseStudies,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Raymora — Web development, built properly",
@@ -19,24 +25,12 @@ export const metadata: Metadata = {
 const trustFacts = [
   "Fixed pricing, up front",
   "45% deposit · 55% on delivery",
-  "Every project has a process",
+  "Every project follows a proven process",
   "Fast turnaround",
 ];
 
-/* Fallback case-study-like cards shown when no case studies are published. */
-function getFallbackStudies() {
-  return siteConfig.niches.map((n) => ({
-    key: `fallback-${n.slug}`,
-    niche: n.label,
-    title: n.status === "live" ? `${n.label} — live & booking` : `${n.label} — coming soon`,
-    summary:
-      n.status === "live"
-        ? "Work is shipping now. Book a call to see live samples and talk about your project."
-        : "This craft launches soon — book a call to be first in line.",
-  }));
-}
-
-/* Fallback testimonials (on-brand, generic) shown when none are published. */
+/* Fallback testimonials (deprecated). We no longer show anonymous quotes —
+   the section only renders once real testimonials exist (see #4). */
 function getFallbackReviews() {
   return [
     {
@@ -80,7 +74,11 @@ export default async function Home() {
   const heroTitle = heroContent?.title ?? fallbackCopy.hero.title;
   const heroSubtitle = heroContent?.body ?? fallbackCopy.hero.subtitle;
 
-  const hasStudies = studies.length > 0;
+  // Featured work: real shipped projects always render (DB rows or the static
+  // fallback) — never the old "shipping now — book a call" placeholder cards.
+  const work = studies.length > 0 ? studies : fallbackCaseStudies();
+  // Testimonials: only render when real ones exist. Anonymous placeholders
+  // are no longer invented.
   const hasReviews = testimonials.length > 0;
 
   // Split hero title on sentence boundary: first sentence plain, remainder sparkles.
@@ -189,30 +187,11 @@ export default async function Home() {
             </Link>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {hasStudies ? (
-              studies.slice(0, 6).map((item, i) => (
-                <Reveal key={item.id} delay={i * 70} className="h-full">
-                  <CaseStudyCard item={item} />
-                </Reveal>
-              ))
-            ) : (
-              getFallbackStudies().map((item, i) => (
-                <Reveal key={item.key} delay={i * 70} className="h-full">
-                  <div className="surface flex h-full flex-col p-6">
-                    <span className="chip w-fit">{item.niche}</span>
-                    <h3 className="mt-4 text-lg font-semibold text-base-100">{item.title}</h3>
-                    <p className="mt-2 grow text-sm text-base-400">{item.summary}</p>
-                    <Link
-                      href="/book"
-                      className="mt-6 text-sm font-semibold text-accent-strong"
-                      aria-label={`Book a call about ${item.niche}`}
-                    >
-                      Book a call to see what we can build →
-                    </Link>
-                  </div>
-                </Reveal>
-              ))
-            )}
+            {work.slice(0, 6).map((item, i) => (
+              <Reveal key={item.id} delay={i * 70} className="h-full">
+                <CaseStudyCard item={item} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -221,8 +200,8 @@ export default async function Home() {
       <section aria-label="How we work" className="container-px py-16 sm:py-20">
         <SectionHeading
           eyebrow="How it works"
-          title="A real process, not a handshake deal"
-          subtitle="Five stages, every project. You always know what's happening and what comes next."
+          title="Five stages, every project"
+          subtitle="You always know what's happening and what comes next — from discovery to delivery."
         />
         <ol className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
           {siteConfig.processStages.map((stage, i) => (
@@ -252,36 +231,25 @@ export default async function Home() {
       </section>
 
       {/* ---------------- TESTIMONIALS ---------------- */}
-      <section
-        aria-label="Client testimonials"
-        className="border-t border-base-800 bg-base-900 py-16 sm:py-20"
-      >
-        <div className="container-px">
-          <SectionHeading eyebrow="Social proof" title="What clients say" />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {hasReviews ? (
-              testimonials.map((item, i) => (
+      {/* Only shown when real, attributed testimonials exist. Anonymous
+          placeholders are never rendered (trust signal — see review #4). */}
+      {hasReviews && (
+        <section
+          aria-label="Client testimonials"
+          className="border-t border-base-800 bg-base-900 py-16 sm:py-20"
+        >
+          <div className="container-px">
+            <SectionHeading eyebrow="Social proof" title="What clients say" />
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((item, i) => (
                 <Reveal key={item.id} delay={i * 70} className="h-full">
                   <TestimonialCard item={item} />
                 </Reveal>
-              ))
-            ) : (
-              getFallbackReviews().map((item, i) => (
-                <Reveal key={item.id} delay={i * 70} className="h-full">
-                  <figure className="surface flex flex-col p-6">
-                    <div className="text-accent-strong">{QUOTE_ICON}</div>
-                    <blockquote className="mt-3 flex-1 text-base-200">“{item.quote}”</blockquote>
-                    <figcaption className="mt-5">
-                      <p className="font-semibold text-base-100">{item.name}</p>
-                      {item.role && <p className="text-sm text-base-400">{item.role}</p>}
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ---------------- FINAL CTA ---------------- */}
       <section aria-label="Get started" className="container-px py-16 sm:py-20">
@@ -290,8 +258,7 @@ export default async function Home() {
             Ready to start?
           </h2>
           <p className="max-w-xl text-base-400">
-            Tell us what you&apos;re building. We&apos;ll scope it, price it up front, and
-            walk you through the process — no handshake deals, no surprises.
+            Tell us what you&apos;re building. We&apos;ll scope it together, give you a clear price, and walk you through every stage — no surprises.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link href="/book" className="btn-primary">
