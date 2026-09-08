@@ -73,7 +73,6 @@ create table public.leads (
   name text,
   email text,
   whatsapp text,
-  discord text,
   niche text,
   tier text,
   scope text,

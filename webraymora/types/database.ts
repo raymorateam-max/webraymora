@@ -200,7 +200,6 @@ export interface Database {
           name: string | null;
           email: string | null;
           whatsapp: string | null;
-          discord: string | null;
           niche: string | null;
           tier: string | null;
           scope: string | null;
@@ -217,7 +216,6 @@ export interface Database {
           name?: string | null;
           email?: string | null;
           whatsapp?: string | null;
-          discord?: string | null;
           niche?: string | null;
           tier?: string | null;
           scope?: string | null;
@@ -234,7 +232,6 @@ export interface Database {
           name?: string | null;
           email?: string | null;
           whatsapp?: string | null;
-          discord?: string | null;
           niche?: string | null;
           tier?: string | null;
           scope?: string | null;

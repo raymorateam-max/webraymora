@@ -57,7 +57,6 @@ export async function POST(request: Request) {
           name,
           email: email || null,
           whatsapp: str(payload.whatsapp) || null,
-          discord: str(payload.discord) || null,
           niche: str(payload.niche) || null,
           tier: str(payload.tier) || null,
           scope: str(payload.scope) || null,
@@ -96,7 +95,6 @@ export async function POST(request: Request) {
         final_paid: false,
         preview_url: str(payload.preview_url) || "",
         whatsapp: str(payload.whatsapp) || "",
-        discord: str(payload.discord) || "",
         notes: slotToNotes(str(payload.slot), str(payload.notes) || str(payload.message)),
       };
       const res = await fetch(webhookUrl, {
@@ -140,7 +138,6 @@ export async function POST(request: Request) {
         `Name: ${name}`,
         `Email: ${email || "—"}`,
         str(payload.whatsapp) ? `WhatsApp: ${str(payload.whatsapp)}` : "",
-        str(payload.discord) ? `Discord: ${str(payload.discord)}` : "",
         scope ? `Scope: ${scope}` : "",
         slot ? `Chosen slot: ${slot}` : "",
         message ? `Message:\n${message}` : "",
@@ -154,7 +151,6 @@ export async function POST(request: Request) {
         row("Name", name),
         row("Email", email || "—"),
         row("WhatsApp", str(payload.whatsapp)),
-        row("Discord", str(payload.discord)),
         row("Scope", scope),
         row("Chosen slot", slot),
         row("Message", message),
