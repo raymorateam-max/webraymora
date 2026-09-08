@@ -1,0 +1,27 @@
+TO: support@stackdecode.com
+SUBJECT: A behind-the-scenes web dev partner for your clients
+
+Hi Stack Decode,
+
+Being in the white-label web development space yourself, you know exactly how valuable a reliable behind-the-scenes build partner is.
+
+I run Raymora, a web design and development team, and I think there could be a good fit between what we do and what Stack Decode delivers for your clients.
+
+Here's the idea: whenever one of your clients needs a website, we design, build, and deploy it — you keep the client relationship, we handle 100% of the technical work behind the scenes.
+
+To prove the quality of our work with zero risk on your end, we'll build and deploy your first 2 client websites completely free — no cost to you or your client. After that, we'd move to a fixed per-project rate, so you always know your margin upfront.
+
+To give you a feel for our quality without any back-and-forth, here's our portfolio and a few live sites we've built:
+- Portfolio: https://webraymora.vercel.app
+- Hospital site: https://swasthya-hospital.vercel.app
+- School site: https://brightleaf-schools.vercel.app
+- Restaurant site: https://restaurant-website-red-pi.vercel.app
+- Salon site: https://kamboja-salon.vercel.app
+
+This is our opening offer, and we're genuinely open to adjusting it based on your volume or how you'd rather structure it — if you have something else in mind, let's talk it through.
+
+Would you be open to a quick call this week? I can walk you through the specifics and we can see if this makes sense.
+
+Best,
+Raymora Team
+raymora.team@gmail.com | wa.me/923712385700

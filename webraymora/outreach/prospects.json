@@ -1,0 +1,686 @@
+[
+  {
+    "idx": 1,
+    "name": "Digital Web Shark",
+    "market": "Pakistan",
+    "services": "Web development, SEO, digital marketing",
+    "contact_url": "https://digitalwebshark.com/contact-us/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "mamoor.khan@digitalwebshark.com"
+    ],
+    "title": "Contact us - Best Digital Agency",
+    "primary": "mamoor.khan@digitalwebshark.com"
+  },
+  {
+    "idx": 2,
+    "name": "Web Studio",
+    "market": "Pakistan",
+    "services": "Web design, development, digital marketing",
+    "contact_url": "https://webstudio.pk/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@webstudio.pk"
+    ],
+    "title": "Web design &amp; Web development company in Islamabad, Pakistan",
+    "primary": "info@webstudio.pk"
+  },
+  {
+    "idx": 3,
+    "name": "Webozia",
+    "market": "Pakistan",
+    "services": "Web design, e-commerce, branding",
+    "contact_url": "https://webozia.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "sales@webozia.com",
+      "info@webozia.com"
+    ],
+    "title": "Best Web Design &amp; Development Agency in Karachi Pakistan | Webozia",
+    "primary": "sales@webozia.com"
+  },
+  {
+    "idx": 4,
+    "name": "Swismax",
+    "market": "Pakistan",
+    "services": "Web, SEO, branding, e-commerce",
+    "contact_url": "https://swismax.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@swismax.com"
+    ],
+    "title": "Digital Agency Islamabad | Web Development, SEO & Branding — Swismax",
+    "primary": "info@swismax.com"
+  },
+  {
+    "idx": 5,
+    "name": "Apex Web & Digital Agency",
+    "market": "Pakistan",
+    "services": "WordPress, Shopify, e-commerce, UI/UX",
+    "contact_url": "https://www.apexwebdesigner.com/contact-us/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@apexwebdesigner.com",
+      "info@horizonetwork.co.uk",
+      "info@apexdigitalagency.com.au"
+    ],
+    "title": "Contact Us - Apex Web &amp; Digital Agency - Contact Now",
+    "primary": "info@apexwebdesigner.com"
+  },
+  {
+    "idx": 6,
+    "name": "Devix",
+    "market": "Pakistan",
+    "services": "Web development, design, digital marketing",
+    "contact_url": "https://devix.pk/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "contact@devix.pk"
+    ],
+    "title": "Devix | Creative Design, Branding &amp; Digital Solution",
+    "primary": "contact@devix.pk"
+  },
+  {
+    "idx": 7,
+    "name": "Max Media",
+    "market": "Pakistan",
+    "services": "Digital marketing, web development",
+    "contact_url": "https://maxmedia.pk/contacts/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "webmaster@maxmedia.pk"
+    ],
+    "title": "Account Suspended",
+    "primary": "webmaster@maxmedia.pk"
+  },
+  {
+    "idx": 8,
+    "name": "Web Development Lahore",
+    "market": "Pakistan",
+    "services": "Custom web, e-commerce, UI/UX",
+    "contact_url": "https://webdevelopmentlahore.pk/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@webdevelopmentlahore.pk"
+    ],
+    "title": "Web Development Lahore | Web Development Company in Lahore",
+    "primary": "info@webdevelopmentlahore.pk"
+  },
+  {
+    "idx": 9,
+    "name": "Vantage Network",
+    "market": "Pakistan",
+    "services": "Web development, SEO, digital marketing",
+    "contact_url": "https://vantageislamabad.com/contact/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@vantageislamabad.com"
+    ],
+    "title": "Contact &#8211; Digital Marketing and Web development company in Islamabad, We digitize your business | Vantage Network Islamabad",
+    "primary": "info@vantageislamabad.com"
+  },
+  {
+    "idx": 10,
+    "name": "NAS Fist Solutions",
+    "market": "Pakistan",
+    "services": "Development, design, hosting",
+    "contact_url": "https://nasfistsolutions.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@nasfistsolutions.com"
+    ],
+    "title": "Web Development, Automation &amp; IT Solutions | NAS Fist Solutions",
+    "primary": "info@nasfistsolutions.com"
+  },
+  {
+    "idx": 11,
+    "name": "Website Pakistan",
+    "market": "Pakistan",
+    "services": "WordPress, Shopify, Laravel, Next.js",
+    "contact_url": "https://websitepakistan.com/contact/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "hello@websitepakistan.com",
+      "info@websitepakistan.com"
+    ],
+    "title": "Contact Website Pakistan — WhatsApp, Email &amp; Phone",
+    "primary": "hello@websitepakistan.com"
+  },
+  {
+    "idx": 12,
+    "name": "Apex Marketings",
+    "market": "Pakistan",
+    "services": "Marketing, web/technical builds",
+    "contact_url": "https://apexmarketings.com/locations/lahore/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@apexmarketings.com"
+    ],
+    "title": "Digital Marketing Agency in Lahore | Apex Marketings",
+    "primary": "info@apexmarketings.com"
+  },
+  {
+    "idx": 13,
+    "name": "DevSphere Technologies",
+    "market": "Pakistan",
+    "services": "Web, SEO, apps, e-commerce",
+    "contact_url": "https://devspheretechnologies.com/contact-us/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@devspheretechnologies.com"
+    ],
+    "title": "Contact Us -Devsphere Technologies 2025",
+    "primary": "info@devspheretechnologies.com"
+  },
+  {
+    "idx": 14,
+    "name": "Infigo Solutions",
+    "market": "Pakistan",
+    "services": "Software, web, e-commerce",
+    "contact_url": "https://infigosolutions.com/contact",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@infigosolutions.com"
+    ],
+    "title": "Contact Us | Infigo Solutions",
+    "primary": "info@infigosolutions.com"
+  },
+  {
+    "idx": 15,
+    "name": "Meshlogix Solutions",
+    "market": "Pakistan",
+    "services": "Software, web apps, cloud",
+    "contact_url": "https://meshlogixsolutions.com/contactus",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@meshlogixsolutions.com"
+    ],
+    "title": "",
+    "primary": "info@meshlogixsolutions.com"
+  },
+  {
+    "idx": 16,
+    "name": "RIKSOF",
+    "market": "Pakistan",
+    "services": "Digital products, web/software",
+    "contact_url": "https://www.riksof.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "sales@riksof.com"
+    ],
+    "title": "Award-winning agency for AI-enabled solutions | RIKSOF",
+    "primary": "sales@riksof.com"
+  },
+  {
+    "idx": 17,
+    "name": "Devziv",
+    "market": "Pakistan",
+    "services": "Webflow, web development, SEO",
+    "contact_url": "https://devziv.com/",
+    "segment": "general",
+    "status": "emails_dropped_junk",
+    "emails": [],
+    "title": "Devziv | Webflow Design, Development, SEO and CRO Agency",
+    "primary": ""
+  },
+  {
+    "idx": 18,
+    "name": "Chakor",
+    "market": "Pakistan",
+    "services": "Custom websites, full-stack development",
+    "contact_url": "https://chakor.com/",
+    "segment": "general",
+    "status": "fetch_failed",
+    "emails": [],
+    "title": "",
+    "primary": ""
+  },
+  {
+    "idx": 19,
+    "name": "Code District",
+    "market": "Pakistan",
+    "services": "Web apps, software, web development",
+    "contact_url": "https://www.codedistrict.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "sales@codedistrict.com",
+      "info@codedistrict.com",
+      "alex@gmail.com"
+    ],
+    "title": "Code District | AI - First Tech Partner for Businesses",
+    "primary": "sales@codedistrict.com"
+  },
+  {
+    "idx": 20,
+    "name": "Hashlogics",
+    "market": "Pakistan",
+    "services": "Web/software, AI solutions",
+    "contact_url": "https://dev.hashlogics.com/contact-us/",
+    "segment": "general",
+    "status": "fetch_failed",
+    "emails": [],
+    "title": "",
+    "primary": ""
+  },
+  {
+    "idx": 21,
+    "name": "10Pearls",
+    "market": "Pakistan / Global",
+    "services": "Digital products, software, web development",
+    "contact_url": "https://10pearls.com/get-in-touch/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@10pearls.com"
+    ],
+    "title": "Get In Touch with 10Pearls",
+    "primary": "info@10pearls.com"
+  },
+  {
+    "idx": 22,
+    "name": "Folio3",
+    "market": "Pakistan / Global",
+    "services": "Software, web, e-commerce",
+    "contact_url": "https://folio3.com/contact-us/",
+    "segment": "general",
+    "status": "form_only",
+    "emails": [],
+    "title": "Contact Us | Folio3",
+    "primary": ""
+  },
+  {
+    "idx": 23,
+    "name": "NETSOL Technologies",
+    "market": "Pakistan / Global",
+    "services": "Software, web/digital products",
+    "contact_url": "https://netsolpk.com/contact-us",
+    "segment": "general",
+    "status": "form_only",
+    "emails": [],
+    "title": "NETSOL Technologies",
+    "primary": ""
+  },
+  {
+    "idx": 24,
+    "name": "tkxel",
+    "market": "Pakistan / Global",
+    "services": "Software, web applications, product development",
+    "contact_url": "https://tkxel.com/contact-us/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@tkxel.com"
+    ],
+    "title": "Contact Us for Support and Solutions | tkxel",
+    "primary": "info@tkxel.com"
+  },
+  {
+    "idx": 25,
+    "name": "VentureDive",
+    "market": "Pakistan / Global",
+    "services": "Software, digital products",
+    "contact_url": "https://www.venturedive.com/contact-us",
+    "segment": "general",
+    "status": "form_only",
+    "emails": [],
+    "title": "Contact Us | Get in Touch with VentureDive",
+    "primary": ""
+  },
+  {
+    "idx": 26,
+    "name": "Confiz",
+    "market": "Pakistan / Global",
+    "services": "Digital transformation, software, web",
+    "contact_url": "https://www.confiz.com/contact/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "marketing@confiz.com"
+    ],
+    "title": "Get in touch | Confiz",
+    "primary": "marketing@confiz.com"
+  },
+  {
+    "idx": 27,
+    "name": "Arbisoft",
+    "market": "Pakistan / Global",
+    "services": "Software, web applications, product engineering",
+    "contact_url": "https://arbisoft.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "contact@arbisoft.com"
+    ],
+    "title": "Arbisoft - A Global Software and Product Development Company",
+    "primary": "contact@arbisoft.com"
+  },
+  {
+    "idx": 28,
+    "name": "WPExperts",
+    "market": "Pakistan / Global",
+    "services": "WordPress, web development",
+    "contact_url": "https://wpexperts.io/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "contact@wpexperts.io"
+    ],
+    "title": "WordPress Development Agency | AI-Powered WordPress Consultants",
+    "primary": "contact@wpexperts.io"
+  },
+  {
+    "idx": 29,
+    "name": "Devsinc",
+    "market": "Pakistan / Global",
+    "services": "Software, web development, digital solutions",
+    "contact_url": "https://devsinc.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "inquiry@devsinc.com"
+    ],
+    "title": "Engineering the next era of digital businesses | Devsinc",
+    "primary": "inquiry@devsinc.com"
+  },
+  {
+    "idx": 30,
+    "name": "Xeven Solutions",
+    "market": "Pakistan / Global",
+    "services": "Web/software, AI, digital solutions",
+    "contact_url": "https://www.xevensolutions.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@xevensolutions.com"
+    ],
+    "title": "Xeven Solutions | Building the Future of Human Potential",
+    "primary": "info@xevensolutions.com"
+  },
+  {
+    "idx": 31,
+    "name": "CodiGeeks",
+    "market": "Pakistan",
+    "services": "Web/software development",
+    "contact_url": "https://codigeeks.com/",
+    "segment": "general",
+    "status": "fetch_failed",
+    "emails": [],
+    "title": "",
+    "primary": ""
+  },
+  {
+    "idx": 32,
+    "name": "Webmasters Digital",
+    "market": "Pakistan / USA",
+    "services": "Web development, digital marketing",
+    "contact_url": "https://webmastersdigital.com/",
+    "segment": "general",
+    "status": "form_only",
+    "emails": [],
+    "title": "Webmasters Digital | Web Design Company in the USA &amp; Pakistan",
+    "primary": ""
+  },
+  {
+    "idx": 33,
+    "name": "Digital Web Solutions",
+    "market": "Pakistan",
+    "services": "Web development, digital services",
+    "contact_url": "https://digitalwebsolutions.com.pk/",
+    "segment": "general",
+    "status": "fetch_failed",
+    "emails": [],
+    "title": "",
+    "primary": ""
+  },
+  {
+    "idx": 34,
+    "name": "Futuristic Bug",
+    "market": "Pakistan",
+    "services": "Web development, software, digital services",
+    "contact_url": "https://futuristicbug.com/",
+    "segment": "general",
+    "status": "fetch_failed",
+    "emails": [],
+    "title": "",
+    "primary": ""
+  },
+  {
+    "idx": 35,
+    "name": "Netpace",
+    "market": "Pakistan / Global",
+    "services": "E-commerce, software, web solutions",
+    "contact_url": "https://www.netpace.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "support@netpace.com"
+    ],
+    "title": "Home - Staffing Services &amp; Solutions | IT Services | Healthcare | Netpace Inc",
+    "primary": "support@netpace.com"
+  },
+  {
+    "idx": 36,
+    "name": "DoodleWeb",
+    "market": "USA",
+    "services": "White-label web development",
+    "contact_url": "https://doodleweb.io/white-label-web-development",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "info@doodleweb.io"
+    ],
+    "title": "White-Label Web Development Agency for Agencies | DoodleWeb",
+    "primary": "info@doodleweb.io"
+  },
+  {
+    "idx": 37,
+    "name": "Web Hero",
+    "market": "UK",
+    "services": "White-label web development",
+    "contact_url": "https://www.webhero.co/services/agency-white-label",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "info@webhero.co"
+    ],
+    "title": "White label web design &amp; development for agencies | Web Hero",
+    "primary": "info@webhero.co"
+  },
+  {
+    "idx": 38,
+    "name": "Direct First",
+    "market": "UK",
+    "services": "White-label services, web",
+    "contact_url": "https://direct-1st.com/services/white-label/",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "info@direct-1st.com"
+    ],
+    "title": "White Label Web Design &amp; SEO UK | Agency Partner | Direct First",
+    "primary": "info@direct-1st.com"
+  },
+  {
+    "idx": 39,
+    "name": "Web Designer Factory",
+    "market": "USA",
+    "services": "White-label website development",
+    "contact_url": "https://webdesignerfactory.com/white-label-website-developer/",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "support@webdesignerfactory.com"
+    ],
+    "title": "White Label Web Development Services | Web Designer Factory",
+    "primary": "support@webdesignerfactory.com"
+  },
+  {
+    "idx": 40,
+    "name": "White Label Website Development",
+    "market": "USA / Global",
+    "services": "White-label web development",
+    "contact_url": "https://whitelabelwebsitedevelopment.com/contact",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "whitelabelwebsitedevelopment@gmail.com"
+    ],
+    "title": "Contact Us | White Label Website Development",
+    "primary": "whitelabelwebsitedevelopment@gmail.com"
+  },
+  {
+    "idx": 41,
+    "name": "webzworld",
+    "market": "India",
+    "services": "Web design, development, digital services",
+    "contact_url": "https://www.webzworld.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "info@webzworld.com"
+    ],
+    "title": "White-Label Web Development India | Hire Developers | webzworld",
+    "primary": "info@webzworld.com"
+  },
+  {
+    "idx": 42,
+    "name": "The UI Coders",
+    "market": "India",
+    "services": "White-label web development",
+    "contact_url": "https://theuicoders.com/for-agencies",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "contact@theuicoders.com"
+    ],
+    "title": "White-Label Web Development for Agencies in India | The UI Coders",
+    "primary": "contact@theuicoders.com"
+  },
+  {
+    "idx": 43,
+    "name": "JMJ WebPro",
+    "market": "USA",
+    "services": "Web design and development",
+    "contact_url": "https://jmjwebpro.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "support@staging-3a5e-jmjwebprocom.wpcomstaging.com"
+    ],
+    "title": "White Label Web Design &amp; Development for Agencies | Trusted U.S. Delivery Partner",
+    "primary": "support@staging-3a5e-jmjwebprocom.wpcomstaging.com"
+  },
+  {
+    "idx": 44,
+    "name": "Code Nation LLC",
+    "market": "USA",
+    "services": "Web/software development",
+    "contact_url": "https://codenationllc.com/contact",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "muddasir@codenationllc.com"
+    ],
+    "title": "Contact Code Nation LLC | Agency Development Support",
+    "primary": "muddasir@codenationllc.com"
+  },
+  {
+    "idx": 45,
+    "name": "Stack Decode",
+    "market": "India",
+    "services": "White-label development",
+    "contact_url": "https://stackdecode.com/white-label-development/",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "support@stackdecode.com"
+    ],
+    "title": "White Label Web Development Agency India | Stack Decode — Silent Dev Partner",
+    "primary": "support@stackdecode.com"
+  },
+  {
+    "idx": 46,
+    "name": "Prateeksha",
+    "market": "India",
+    "services": "White-label web design and outsourcing",
+    "contact_url": "https://prateeksha.com/white-label-web-design-outsourcing",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "sales1@prateeksha.com"
+    ],
+    "title": "White Label Web Design &amp; Outsourcing Partner in India",
+    "primary": "sales1@prateeksha.com"
+  },
+  {
+    "idx": 47,
+    "name": "Incybertech",
+    "market": "India / USA",
+    "services": "Web/software, digital services",
+    "contact_url": "https://www.incybertech.com/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "contact@incybertech.com"
+    ],
+    "title": "White Label Web Development Partner in India for New York Agencies | Incybertech",
+    "primary": "contact@incybertech.com"
+  },
+  {
+    "idx": 48,
+    "name": "Them Digital",
+    "market": "India",
+    "services": "Agency services, digital/web",
+    "contact_url": "https://them.digital/",
+    "segment": "general",
+    "status": "form_only",
+    "emails": [],
+    "title": "White-Label Web, App Development & SEO for Agencies | Them Digital",
+    "primary": ""
+  },
+  {
+    "idx": 49,
+    "name": "DNG Studio",
+    "market": "USA / Global",
+    "services": "Agency partnerships, digital/web",
+    "contact_url": "https://www.dngstudio.co/partners/",
+    "segment": "general",
+    "status": "found",
+    "emails": [
+      "office@dngstudio.co"
+    ],
+    "title": "White-Label Web Development for Agencies | DNG Studio",
+    "primary": "office@dngstudio.co"
+  },
+  {
+    "idx": 50,
+    "name": "KYVEON",
+    "market": "Pakistan",
+    "services": "White-label web development",
+    "contact_url": "https://kyveon.com/white-label-web-development/",
+    "segment": "white_label",
+    "status": "found",
+    "emails": [
+      "hello@kyveon.com"
+    ],
+    "title": "White Label Web Development for Agencies | KYVEON",
+    "primary": "hello@kyveon.com"
+  }
+]
