@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { createAdminClient, isSupabaseConfigured } from "@/lib/supabase";
 
 /**
@@ -17,10 +17,9 @@ import { createAdminClient, isSupabaseConfigured } from "@/lib/supabase";
  *      Sheets tracker with the same columns (Client/Stage/Niche/Scope/
  *      Deposit Paid/Final Paid/Preview URL).
  *   3. Record a `lead_events` row for the intake.
- *   4. Email a notification to the agency inbox (Gmail SMTP via
- *      nodemailer — no third-party service, no domain verification).
- *      Recipient = LEAD_NOTIFY_EMAIL, falling back to GMAIL_USER or the
- *      site contact email. Set GMAIL_USER + GMAIL_APP_PASSWORD.
+ *   4. Email a notification to the agency inbox via Resend.
+ *      Recipient = LEAD_NOTIFY_EMAIL, falling back to the site contact email.
+ *      Set RESEND_API_KEY in your Vercel env.
  *
  * Steps 2-4 are best-effort: if any of them fails, the lead is still
  * saved and the response still succeeds — an integration hiccup never
@@ -113,70 +112,64 @@ export async function POST(request: Request) {
   }
 
   // ---- 3. Email the notification to the agency inbox (best-effort) ----
-  // Sends through Gmail's SMTP server (smtp.gmail.com) using an App Password
-  // — no third-party email service, no domain verification. If the env isn't
-  // set, this step is skipped entirely and the lead is still saved.
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+  // Sent through Resend (resend.com). Set RESEND_API_KEY in your Vercel env.
+  // If the env isn't set, this step is skipped entirely and the lead is still
+  // saved. From-address must match your verified Resend domain (defaults to
+  // the onboarding sandbox until you verify a domain).
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromAddress = process.env.RESEND_FROM ?? "Raymora <onboarding@resend.dev>";
   const notifyEmail =
-    process.env.LEAD_NOTIFY_EMAIL ??
-    gmailUser ??
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL ??
-    "";
+    process.env.LEAD_NOTIFY_EMAIL ?? process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "";
   let emailSent = false;
-  if (gmailUser && gmailAppPassword && notifyEmail) {
-    try {
-      const slot = str(payload.slot);
-      const niche = str(payload.niche);
-      const tier = str(payload.tier);
-      const scope = str(payload.scope);
-      const message = str(payload.notes) || str(payload.message);
-      const leadLine = getLeadLine(source, niche, tier, name);
+  if (apiKey && notifyEmail) {
+    const resend = new Resend(apiKey);
+    const slot = str(payload.slot);
+    const niche = str(payload.niche);
+    const tier = str(payload.tier);
+    const scope = str(payload.scope);
+    const message = str(payload.notes) || str(payload.message);
+    const leadLine = getLeadLine(source, niche, tier, name);
 
-      const text = [
-        leadLine,
-        `Name: ${name}`,
-        `Email: ${email || "—"}`,
-        str(payload.whatsapp) ? `WhatsApp: ${str(payload.whatsapp)}` : "",
-        scope ? `Scope: ${scope}` : "",
-        slot ? `Chosen slot: ${slot}` : "",
-        message ? `Message:\n${message}` : "",
-      ]
-        .filter(Boolean)
-        .join("\n");
+    const text = [
+      leadLine,
+      `Name: ${name}`,
+      `Email: ${email || "—"}`,
+      str(payload.whatsapp) ? `WhatsApp: ${str(payload.whatsapp)}` : "",
+      scope ? `Scope: ${scope}` : "",
+      slot ? `Chosen slot: ${slot}` : "",
+      message ? `Message:\n${message}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
 
-      const html = [
-        `<p><strong>${escapeHtml(leadLine)}</strong></p>`,
-        "<table>",
-        row("Name", name),
-        row("Email", email || "—"),
-        row("WhatsApp", str(payload.whatsapp)),
-        row("Scope", scope),
-        row("Chosen slot", slot),
-        row("Message", message),
-        "</table>",
-      ].join("");
+    const html = [
+      `<p><strong>${escapeHtml(leadLine)}</strong></p>`,
+      "<table>",
+      row("Name", name),
+      row("Email", email || "—"),
+      row("WhatsApp", str(payload.whatsapp)),
+      row("Scope", scope),
+      row("Chosen slot", slot),
+      row("Message", message),
+      "</table>",
+    ].join("");
 
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true, // SSL
-        auth: { user: gmailUser, pass: gmailAppPassword },
-        connectionTimeout: 10000,
-        socketTimeout: 10000,
-      });
-
-      await transporter.sendMail({
-        from: `"Raymora" <${gmailUser}>`,
-        to: notifyEmail,
+    const { data, error } = await resend.emails.send(
+      {
+        from: fromAddress,
+        to: [notifyEmail],
         replyTo: email || undefined,
         subject: leadLine,
         text,
         html,
-      });
+      },
+      { idempotencyKey: `lead-notify/${leadId ?? `${Date.now()}-${name}`}` }
+    );
+
+    if (error) {
+      console.error("[api/lead] Resend email send failed (lead still saved):", error.message);
+    } else {
       emailSent = true;
-    } catch (err) {
-      console.error("[api/lead] Gmail email send failed (lead still saved):", err);
     }
   }
 
