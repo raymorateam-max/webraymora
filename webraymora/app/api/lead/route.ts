@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createAdminClient, isSupabaseConfigured } from "@/lib/supabase";
+import { siteConfig } from "@/lib/config";
 
 /**
  * POST /api/lead
@@ -119,7 +120,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const fromAddress = process.env.RESEND_FROM ?? "Raymora <onboarding@resend.dev>";
   const notifyEmail =
-    process.env.LEAD_NOTIFY_EMAIL ?? process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "";
+    process.env.LEAD_NOTIFY_EMAIL ?? process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? siteConfig.email;
   let emailSent = false;
   if (apiKey && notifyEmail) {
     const resend = new Resend(apiKey);
